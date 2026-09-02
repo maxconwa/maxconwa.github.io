@@ -135,6 +135,14 @@
   .proj-links { display:flex; flex-wrap:wrap; gap:.4rem 1.3rem; margin:0; padding:0; list-style:none; font-size:.95rem; }
   .proj-links .plain { color:var(--muted); }
 
+  /* ---------- teaching ---------- */
+  .entries { list-style:none; margin:0; padding:0; max-width:78ch; }
+  .entries li { padding:1.1rem 0; border-top:1px solid var(--rule); }
+  .entries li:first-child { border-top:0; padding-top:0; }
+  .entries .role { font-weight:600; }
+  .entries .where { color:var(--muted); font-size:.95rem; }
+  .entries .note { color:var(--muted); font-size:.95rem; margin:.4rem 0 0; max-width:66ch; }
+
   /* ---------- publications ---------- */
   .pubs { list-style:none; margin:0; padding:0; max-width:78ch; }
   .pubs li { padding:1rem 0; border-top:1px solid var(--rule); }
@@ -173,7 +181,7 @@
       <p class="tagline">Humanoid robotics &mdash; planning with learned models.</p>
       <p class="affil">
         PhD student in Computer Science, University of Colorado Boulder.<br>
-        Advised by Nikolaus Correll and Zachary Sunberg.
+        Advised by Dr. Nikolaus Correll and Dr. Zachary Sunberg.
       </p>
       <ul class="links">
         <li><a href="https://github.com/maxconwa" rel="me">GitHub</a></li>
@@ -193,8 +201,8 @@
 <section id="about" class="wrap">
   <h2>About</h2>
   <p class="prose">
-    I&rsquo;m a PhD student in computer science at CU Boulder, advised by Nikolaus Correll and
-    Zachary Sunberg. I work on humanoid robots that plan with learned models: building the
+    I&rsquo;m a PhD student in computer science at CU Boulder, advised by Dr. Nikolaus Correll and
+    Dr. Zachary Sunberg. I work on humanoid robots that plan with learned models: building the
     autonomy stacks that let them do precise physical work, and studying how learned models of
     the world can make that planning robust.
   </p>
@@ -285,16 +293,43 @@
     </div>
   </article>
 
-  <!-- TODO(max): replace the holding copy below once we write this up together. -->
+  <!-- TODO(max): add media for this project. -->
   <article class="project">
     <div class="project-media">
       <div class="placeholder">Media coming soon</div>
     </div>
     <div class="project-body">
       <h3>Planning with Learned World Models<span class="wip">Work in progress</span></h3>
-      <p class="pitch">Ongoing PhD work at CU Boulder. Details soon.</p>
+      <p class="pitch">Hypothesis: world models built over temporally extended options instead
+        of individual actions will suffer less from compounding error, enabling longer-horizon
+        planning.</p>
+      <p class="detail">Ongoing PhD work at CU Boulder with Dr. Zachary Sunberg and
+        Dr. Nikolaus Correll.</p>
     </div>
   </article>
+</section>
+
+<section id="teaching" class="wrap">
+  <h2>Teaching</h2>
+  <ul class="entries">
+    <li>
+      <div class="role">Adjunct Professor &mdash; Applied Machine Learning</div>
+      <div class="where">University of Denver &middot; Summer 2024</div>
+      <p class="note">Designed and taught the course end to end: regression, gradient descent,
+        backpropagation, multilayer perceptrons, and transformers. Students finished having built
+        image-classification and reinforcement-learning projects in PyTorch.</p>
+    </li>
+    <li>
+      <div class="role">Graduate Teaching Assistant</div>
+      <div class="where">University of Colorado Boulder &middot; Fall 2024</div>
+    </li>
+    <li>
+      <div class="role">Teaching Assistant</div>
+      <div class="where">University of Denver &middot; 2023&ndash;2024</div>
+      <p class="note">Four upper-level computer science courses: Machine Learning, Software for
+        AI Robotics, Embedded Systems, and Advanced Algorithms.</p>
+    </li>
+  </ul>
 </section>
 
 <section id="publications" class="wrap">
