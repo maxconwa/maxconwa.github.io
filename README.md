@@ -21,6 +21,7 @@ Everything lives in `index.html`; the CSS is in the `<style>` block at the top.
 ```
 assets/cv/max-conway-resume.pdf   redacted copy — no phone number or home address
 assets/img/headshot.png
+assets/img/favicon-32.png, favicon-180.png   tab icon + iOS home screen
 assets/golem/  golem.mp4, golem-clip.mp4, + poster JPGs
 assets/rapid/  rapid.mp4, + poster JPG
 ```
