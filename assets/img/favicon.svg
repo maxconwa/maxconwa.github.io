@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    rect { fill: #16181d; }
+    text { fill: #fdfdfc; }
+    @media (prefers-color-scheme: dark) {
+      rect { fill: #e9eaee; }
+      text { fill: #101216; }
+    }
+  </style>
+  <rect width="64" height="64" rx="14"/>
+  <text x="32" y="44" text-anchor="middle"
+        font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="700"
+        letter-spacing="-1">MC</text>
+</svg>

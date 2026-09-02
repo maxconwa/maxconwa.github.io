@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Max Conway — Humanoid robotics research</title>
+<meta name="description" content="Max Conway is a PhD student in computer science at CU Boulder working on humanoid robots that plan with learned models.">
+<meta name="theme-color" content="#fdfdfc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101216" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://maxconwa.github.io/">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Max Conway — Humanoid robotics research">
+<meta property="og:description" content="PhD student at CU Boulder working on humanoid robots that plan with learned models.">
+<meta property="og:url" content="https://maxconwa.github.io/">
+<meta property="og:image" content="https://maxconwa.github.io/assets/golem/golem-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  :root {
+    --bg:#fdfdfc; --fg:#16181d; --muted:#5b6270; --rule:#e4e5e9;
+    --accent:#2f5fd0; --card:#f5f5f3; --tag-bg:#eceef2;
+    --shadow: 0 1px 2px rgba(16,18,22,.06), 0 8px 24px rgba(16,18,22,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#101216; --fg:#e9eaee; --muted:#99a0ac; --rule:#262a31;
+      --accent:#8db0ff; --card:#171a20; --tag-bg:#1e222a;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { max-width:100%; display:block; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; text-underline-offset:3px; }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:3px; }
+
+  .wrap { max-width:1060px; margin:0 auto; padding-inline:1.5rem; }
+  .skip {
+    position:absolute; left:-9999px; top:0; background:var(--bg); color:var(--fg);
+    padding:.6rem 1rem; border:1px solid var(--rule); border-radius:6px; z-index:10;
+  }
+  .skip:focus { left:1rem; top:1rem; }
+
+  /* ---------- hero ---------- */
+  .hero { padding: clamp(3rem, 9vw, 6rem) 0 clamp(2.5rem, 6vw, 4rem); }
+  .hero-grid {
+    display:grid; grid-template-columns: 1fr auto;
+    gap: clamp(1.5rem, 4vw, 3rem); align-items:start;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 6.5vw, 3.6rem); line-height:1.05;
+    letter-spacing:-.028em; margin:0 0 .5rem; font-weight:700;
+  }
+  .tagline {
+    font-size: clamp(1.1rem, 2.4vw, 1.3rem); color:var(--fg);
+    margin:0 0 1rem; max-width:34ch; line-height:1.4;
+  }
+  .affil { color:var(--muted); margin:0 0 1.75rem; max-width:46ch; }
+  .portrait {
+    width:132px; height:132px; border-radius:50%; object-fit:cover;
+    border:1px solid var(--rule); box-shadow:var(--shadow);
+  }
+
+  .links { display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin:0 0 1.6rem; padding:0; list-style:none; }
+  .links a { color:var(--fg); border-bottom:1px solid var(--rule); padding-bottom:2px; }
+  .links a:hover { color:var(--accent); border-bottom-color:var(--accent); text-decoration:none; }
+
+  .btn {
+    display:inline-block; padding:.6rem 1.15rem; border-radius:7px;
+    background:var(--fg); color:var(--bg); font-weight:600; font-size:.95rem;
+    letter-spacing:.005em;
+  }
+  .btn:hover { text-decoration:none; opacity:.87; }
+
+  /* ---------- sections ---------- */
+  section { padding-block: clamp(2.75rem, 6vw, 4.5rem); border-top:1px solid var(--rule); }
+  h2 {
+    font-size:.8rem; text-transform:uppercase; letter-spacing:.14em;
+    color:var(--muted); font-weight:600; margin:0 0 1.75rem;
+  }
+  .prose { max-width:62ch; margin:0; font-size:1.06rem; }
+  .prose + .prose { margin-top:1rem; }
+
+  /* ---------- projects ---------- */
+  .project {
+    display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+    gap: clamp(1.75rem, 4vw, 3.25rem); align-items:center;
+  }
+  .project + .project { margin-top: clamp(3rem, 7vw, 5rem); }
+  .project:nth-of-type(even) .project-media { order:2; }
+
+  .project-media { min-width:0; display:grid; gap:.9rem; }
+  .project-media video, .frame {
+    width:100%; border-radius:10px; border:1px solid var(--rule);
+    background:var(--card); box-shadow:var(--shadow);
+  }
+  .clip { display:grid; grid-template-columns: 172px 1fr; gap:1rem; align-items:center; margin:0; }
+  .clip video { border-radius:8px; }
+  .clip figcaption { color:var(--muted); font-size:.87rem; line-height:1.45; }
+  .placeholder {
+    border:1px dashed var(--rule); border-radius:10px; background:var(--card);
+    aspect-ratio:16/9; display:grid; place-content:center; text-align:center;
+    color:var(--muted); font-size:.9rem; padding:1rem;
+  }
+
+  .project-body { min-width:0; }
+  .project-body h3 {
+    font-size: clamp(1.5rem, 3.2vw, 1.85rem); letter-spacing:-.02em;
+    margin:0 0 .2rem; line-height:1.15;
+  }
+  .expansion { color:var(--muted); font-size:.95rem; margin:0 0 .9rem; font-style:italic; }
+  .pitch { font-size:1.08rem; margin:0 0 .8rem; }
+  .detail { color:var(--muted); margin:0 0 1.1rem; }
+  .wip {
+    display:inline-block; vertical-align:middle; margin-left:.6rem;
+    font-size:.68rem; text-transform:uppercase; letter-spacing:.1em; font-weight:600;
+    color:var(--muted); background:var(--tag-bg); border-radius:999px; padding:.25rem .65rem;
+  }
+  .tech { display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 1.1rem; padding:0; list-style:none; }
+  .tech li {
+    font-size:.8rem; color:var(--muted); background:var(--tag-bg);
+    border-radius:5px; padding:.22rem .6rem; white-space:nowrap;
+  }
+  .proj-links { display:flex; flex-wrap:wrap; gap:.4rem 1.3rem; margin:0; padding:0; list-style:none; font-size:.95rem; }
+  .proj-links .plain { color:var(--muted); }
+
+  /* ---------- publications ---------- */
+  .pubs { list-style:none; margin:0; padding:0; max-width:78ch; }
+  .pubs li { padding:1rem 0; border-top:1px solid var(--rule); }
+  .pubs li:first-child { border-top:0; padding-top:0; }
+  .pubs .title { font-weight:600; }
+  .pubs .authors { color:var(--muted); font-size:.95rem; }
+  .pubs .venue { color:var(--muted); font-size:.9rem; }
+  .pubs .me { color:var(--fg); font-weight:600; }
+
+  footer {
+    border-top:1px solid var(--rule); padding-block:2rem 3rem;
+    color:var(--muted); font-size:.88rem;
+    display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; justify-content:space-between;
+  }
+
+  @media (max-width: 760px) {
+    body { font-size:16px; }
+    .hero-grid { grid-template-columns:1fr; }
+    .portrait { width:104px; height:104px; order:-1; }
+    .project { grid-template-columns:1fr; }
+    .project:nth-of-type(even) .project-media { order:0; }
+    .clip { grid-template-columns:120px 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#research">Skip to research</a>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Max Conway</h1>
+      <p class="tagline">Humanoid robotics &mdash; planning with learned models.</p>
+      <p class="affil">
+        PhD student in Computer Science, University of Colorado Boulder.<br>
+        Advised by Nikolaus Correll and Zachary Sunberg.
+      </p>
+      <ul class="links">
+        <li><a href="https://github.com/maxconwa" rel="me">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/maxconw/" rel="me">LinkedIn</a></li>
+        <li><a href="https://scholar.google.com/citations?user=c3wtBgMAAAAJ&amp;hl=en" rel="me">Google&nbsp;Scholar</a></li>
+        <li><a href="https://x.com/MaxConwa" rel="me">X</a></li>
+        <li><a href="mailto:maxlconway@gmail.com">Email</a></li>
+      </ul>
+      <a class="btn" href="assets/cv/max-conway-resume.pdf">Résumé (PDF)</a>
+    </div>
+    <img class="portrait" src="assets/img/headshot.png" width="132" height="132"
+         alt="Portrait of Max Conway">
+  </div>
+</header>
+
+<main>
+<section id="about" class="wrap">
+  <h2>About</h2>
+  <p class="prose">
+    I&rsquo;m a PhD student in computer science at CU Boulder, advised by Nikolaus Correll and
+    Zachary Sunberg. I work on humanoid robots that plan with learned models: building the
+    autonomy stacks that let them do precise physical work, and studying how learned models of
+    the world can make that planning robust.
+  </p>
+  <p class="prose">
+    Before Boulder I completed an M.S. and B.S. in computer science at the University of Denver,
+    researched perception for autonomous robots at DEVCOM Army Research Laboratory, and interned
+    as a software engineer at Amazon.
+  </p>
+</section>
+
+<section id="research" class="wrap">
+  <h2>Research</h2>
+
+  <article class="project">
+    <div class="project-media">
+      <video controls muted playsinline preload="none"
+             poster="assets/golem/golem-poster.jpg"
+             aria-label="Overview video of the GOLEM humanoid autonomy stack">
+        <source src="assets/golem/golem.mp4" type="video/mp4">
+        <p>Your browser cannot play this video.
+           <a href="assets/golem/golem.mp4">Download the GOLEM overview (MP4)</a>.</p>
+      </video>
+      <figure class="clip">
+        <video controls muted playsinline preload="none"
+               poster="assets/golem/golem-clip-poster.jpg"
+               aria-label="Screen recording of GOLEM's simulation stack">
+          <source src="assets/golem/golem-clip.mp4" type="video/mp4">
+        </video>
+        <figcaption>The simulation stack running live: FAST-LIO SLAM in RViz alongside a
+          MuJoCo RoboCasa kitchen environment.</figcaption>
+      </figure>
+    </div>
+    <div class="project-body">
+      <h3>GOLEM</h3>
+      <p class="expansion">Generalized Open Layered Embodied Modules</p>
+      <p class="pitch">A modular, open autonomy stack that gets a full-size humanoid doing
+        high-precision industrial work.</p>
+      <p class="detail">
+        GOLEM runs ROS&nbsp;2, MuJoCo, and Isaac Lab in separate containers over a shared
+        CycloneDDS domain, so perception, control, and safety modules can be swapped and compared
+        without rewriting the stack around them. On the Correll Lab&rsquo;s Unitree H1 it drives
+        OMPL arm motion planning at millimeter IK error, FAST-LIO SLAM with Nav2, and whole-body
+        control trained in simulation &mdash; demonstrated removing screws from a Hyundai Ioniq&nbsp;5
+        battery pack. I led the 17-person team that built it, and the architecture, both
+        simulators, and every module are open source.
+      </p>
+      <ul class="tech">
+        <li>ROS 2</li><li>MuJoCo</li><li>Isaac Lab</li><li>Unitree H1</li>
+        <li>Docker</li><li>CycloneDDS</li><li>OMPL</li><li>FAST-LIO</li>
+      </ul>
+      <ul class="proj-links">
+        <li><a href="https://golem-humanoid.github.io">Project site</a></li>
+        <li><a href="https://github.com/correlllab/GOLEM">Code</a></li>
+        <li class="plain">Paper under review, IEEE-RAS Humanoids 2026</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="project-media">
+      <video controls muted playsinline preload="none"
+             poster="assets/rapid/rapid-poster.jpg"
+             aria-label="Video of the RAPID platform disassembling an electric vehicle battery pack">
+        <source src="assets/rapid/rapid.mp4" type="video/mp4">
+        <p>Your browser cannot play this video.
+           <a href="assets/rapid/rapid.mp4">Download the RAPID demonstration (MP4)</a>.</p>
+      </video>
+    </div>
+    <div class="project-body">
+      <h3>RAPID</h3>
+      <p class="expansion">Robotic Agentic Platform for Intelligent Electric Vehicle Disassembly</p>
+      <p class="pitch">A robot that takes a plain-language instruction and takes an EV battery
+        pack apart.</p>
+      <p class="detail">
+        A robot arm on a vertical linear actuator works across a Hyundai Ioniq&nbsp;5 pack, driven
+        by a language-model agent that turns a request like &ldquo;remove all remaining parts&rdquo;
+        into concrete perception and motion calls. I designed and deployed the platform, owning
+        motion planning, perception, and the mechanical design.
+      </p>
+      <ul class="tech">
+        <li>ROS 2</li><li>LLM agent</li><li>Visual servoing</li>
+        <li>Motion planning</li><li>Docker</li>
+      </ul>
+      <ul class="proj-links">
+        <li class="plain">Accepted to IEEE CASE 2026</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- TODO(max): replace the holding copy below once we write this up together. -->
+  <article class="project">
+    <div class="project-media">
+      <div class="placeholder">Media coming soon</div>
+    </div>
+    <div class="project-body">
+      <h3>Planning with Learned World Models<span class="wip">Work in progress</span></h3>
+      <p class="pitch">Ongoing PhD work at CU Boulder. Details soon.</p>
+    </div>
+  </article>
+</section>
+
+<section id="publications" class="wrap">
+  <h2>Publications</h2>
+  <ul class="pubs">
+    <li>
+      <div class="title">GOLEM: Modular Humanoid Autonomy Towards Electric Vehicle Battery Disassembly</div>
+      <div class="authors"><span class="me">Max Conway</span>, et al.</div>
+      <div class="venue">Under review, IEEE-RAS Humanoids 2026</div>
+    </li>
+    <li>
+      <div class="title">Robotic Agentic Platform for Intelligent Electric Vehicle Disassembly</div>
+      <div class="authors">Zachary Allen, <span class="me">Max Conway</span>, Lyle Antieau,
+        Allen Ponraj, Nikolaus Correll</div>
+      <div class="venue">Accepted to IEEE CASE 2026</div>
+    </li>
+    <li>
+      <div class="title">Learned Sensor Fusion for Robust Human Activity Recognition in Challenging Environments</div>
+      <div class="authors"><span class="me">Max Conway</span>, Brian Reily, Christopher Reardon</div>
+      <div class="venue">IROS 2024</div>
+    </li>
+    <li>
+      <div class="title">Data-Driven Hierarchical Open Set Recognition</div>
+      <div class="authors">Andrew Hannum, <span class="me">Max Conway</span>, Andre Harrison,
+        Mario Lopez</div>
+      <div class="venue">ICRA@40</div>
+    </li>
+  </ul>
+</section>
+</main>
+
+<footer class="wrap">
+  <span>Max Conway &middot; Boulder, Colorado</span>
+  <span><a href="mailto:maxlconway@gmail.com">maxlconway@gmail.com</a></span>
+</footer>
+</body>
+</html>
