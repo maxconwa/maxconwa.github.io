@@ -15,7 +15,10 @@
 <meta property="og:title" content="Max Conway — Humanoid robotics research">
 <meta property="og:description" content="PhD student at CU Boulder working on humanoid robots that plan with learned models.">
 <meta property="og:url" content="https://maxconwa.github.io/">
-<meta property="og:image" content="https://maxconwa.github.io/assets/golem/golem-poster.jpg">
+<meta property="og:image" content="https://maxconwa.github.io/assets/golem/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Correll Lab's Unitree H1 humanoid at work in the lab.">
 <meta name="twitter:card" content="summary_large_image">
 
 <style>
@@ -65,11 +68,11 @@
   }
   .tagline {
     font-size: clamp(1.1rem, 2.4vw, 1.3rem); color:var(--fg);
-    margin:0 0 1rem; max-width:34ch; line-height:1.4;
+    margin:0 0 1rem; max-width:52ch; line-height:1.4;
   }
-  .affil { color:var(--muted); margin:0 0 1.75rem; max-width:46ch; }
+  .affil { color:var(--muted); margin:0 0 1.75rem; max-width:66ch; }
   .portrait {
-    width:132px; height:132px; border-radius:50%; object-fit:cover;
+    width:190px; height:190px; border-radius:50%; object-fit:cover;
     border:1px solid var(--rule); box-shadow:var(--shadow);
   }
 
@@ -92,6 +95,7 @@
   }
   .prose { max-width:62ch; margin:0; font-size:1.06rem; }
   .prose + .prose { margin-top:1rem; }
+  .cta { margin-top:1.5rem; }
 
   /* ---------- projects ---------- */
   .project {
@@ -106,9 +110,6 @@
     width:100%; border-radius:10px; border:1px solid var(--rule);
     background:var(--card); box-shadow:var(--shadow);
   }
-  .clip { display:grid; grid-template-columns: 172px 1fr; gap:1rem; align-items:center; margin:0; }
-  .clip video { border-radius:8px; }
-  .clip figcaption { color:var(--muted); font-size:.87rem; line-height:1.45; }
   .placeholder {
     border:1px dashed var(--rule); border-radius:10px; background:var(--card);
     aspect-ratio:16/9; display:grid; place-content:center; text-align:center;
@@ -162,15 +163,36 @@
   @media (max-width: 760px) {
     body { font-size:16px; }
     .hero-grid { grid-template-columns:1fr; }
-    .portrait { width:104px; height:104px; order:-1; }
+    .portrait { width:112px; height:112px; order:-1; }
     .project { grid-template-columns:1fr; }
     .project:nth-of-type(even) .project-media { order:0; }
-    .clip { grid-template-columns:120px 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Max Conway",
+  "url": "https://maxconwa.github.io/",
+  "image": "https://maxconwa.github.io/assets/img/headshot.png",
+  "email": "mailto:max.conway@colorado.edu",
+  "jobTitle": "PhD Student in Computer Science",
+  "description": "Humanoid robotics researcher working on planning with learned models.",
+  "affiliation": { "@type": "CollegeOrUniversity", "name": "University of Colorado Boulder" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Denver" },
+  "knowsAbout": ["Humanoid robotics", "Motion planning", "World models",
+                 "Reinforcement learning", "ROS 2", "Robot perception"],
+  "sameAs": [
+    "https://github.com/maxconwa",
+    "https://www.linkedin.com/in/maxconw/",
+    "https://scholar.google.com/citations?user=c3wtBgMAAAAJ&hl=en",
+    "https://x.com/MaxConwa"
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#research">Skip to research</a>
@@ -193,7 +215,7 @@
       </ul>
       <a class="btn" href="assets/cv/max-conway-resume.pdf">Résumé (PDF)</a>
     </div>
-    <img class="portrait" src="assets/img/headshot.png" width="132" height="132"
+    <img class="portrait" src="assets/img/headshot.png" width="190" height="190"
          alt="Portrait of Max Conway">
   </div>
 </header>
@@ -212,6 +234,11 @@
     researched perception for autonomous robots at DEVCOM Army Research Laboratory, and interned
     as a software engineer at Amazon.
   </p>
+  <p class="prose cta">
+    I&rsquo;m always glad to talk about humanoid autonomy, planning under uncertainty, and getting
+    robots to do real physical work &mdash;
+    <a href="mailto:max.conway@colorado.edu">get in touch</a>.
+  </p>
 </section>
 
 <section id="research" class="wrap">
@@ -226,15 +253,6 @@
         <p>Your browser cannot play this video.
            <a href="assets/golem/golem.mp4">Download the GOLEM overview (MP4)</a>.</p>
       </video>
-      <figure class="clip">
-        <video controls muted playsinline preload="none"
-               poster="assets/golem/golem-clip-poster.jpg"
-               aria-label="Screen recording of GOLEM's simulation stack">
-          <source src="assets/golem/golem-clip.mp4" type="video/mp4">
-        </video>
-        <figcaption>The simulation stack running live: FAST-LIO SLAM in RViz alongside a
-          MuJoCo RoboCasa kitchen environment.</figcaption>
-      </figure>
     </div>
     <div class="project-body">
       <h3>GOLEM</h3>
@@ -338,25 +356,41 @@
   <ul class="pubs">
     <li>
       <div class="title">GOLEM: Modular Humanoid Autonomy Towards Electric Vehicle Battery Disassembly</div>
-      <div class="authors"><span class="me">Max Conway</span>, et al.</div>
-      <div class="venue">Under review, IEEE-RAS Humanoids 2026</div>
+      <div class="authors"><span class="me">Max Conway</span>, William Xie, Allen Devaraj,
+        Yutong Zhang, Niraj Pudasaini, Mateo Feit, Adam Abid, Zachary Allen, Chen Liu, Xuan Tan,
+        Jensen Lavering, Jason Chen, Lyle Antieau, Anthony Von Pischke, Alessandro Roncone,
+        Zachary Sunberg, Nikolaus Correll</div>
+      <div class="venue">Under review, IEEE-RAS Humanoids 2026 &middot;
+        <a href="https://arxiv.org/abs/2608.21550">arXiv:2608.21550</a></div>
     </li>
     <li>
       <div class="title">Robotic Agentic Platform for Intelligent Electric Vehicle Disassembly</div>
       <div class="authors">Zachary Allen, <span class="me">Max Conway</span>, Lyle Antieau,
         Allen Ponraj, Nikolaus Correll</div>
-      <div class="venue">Accepted to IEEE CASE 2026</div>
+      <div class="venue">Accepted to IEEE CASE 2026 &middot;
+        <a href="https://arxiv.org/abs/2603.18520">arXiv:2603.18520</a></div>
     </li>
     <li>
-      <div class="title">Learned Sensor Fusion for Robust Human Activity Recognition in Challenging Environments</div>
+      <div class="title">Unfettered Forceful Skill Acquisition with Physical Reasoning and
+        Coordinate Frame Labeling</div>
+      <div class="authors">William Xie, <span class="me">Max Conway</span>, Yutong Zhang,
+        Nikolaus Correll</div>
+      <div class="venue">Preprint, 2025 &middot;
+        <a href="https://arxiv.org/abs/2505.09731">arXiv:2505.09731</a></div>
+    </li>
+    <li>
+      <div class="title">Learned Sensor Fusion for Robust Human Activity Recognition in
+        Challenging Environments</div>
       <div class="authors"><span class="me">Max Conway</span>, Brian Reily, Christopher Reardon</div>
-      <div class="venue">IROS 2024</div>
+      <div class="venue">IROS 2024 &middot;
+        <a href="https://doi.org/10.1109/IROS58592.2024.10802830">10.1109/IROS58592.2024.10802830</a></div>
     </li>
     <li>
       <div class="title">Data-Driven Hierarchical Open Set Recognition</div>
-      <div class="authors">Andrew Hannum, <span class="me">Max Conway</span>, Andre Harrison,
-        Mario Lopez</div>
-      <div class="venue">ICRA@40</div>
+      <div class="authors">Andrew Hannum, <span class="me">Max Conway</span>, Mario Lopez,
+        Andr&eacute; Harrison</div>
+      <div class="venue">ICRA@40, 2024 &middot;
+        <a href="https://arxiv.org/abs/2411.02635">arXiv:2411.02635</a></div>
     </li>
   </ul>
 </section>
