@@ -145,6 +145,13 @@
   .entries .where { color:var(--muted); font-size:.95rem; }
   .entries .note { color:var(--muted); font-size:.95rem; margin:.4rem 0 0; max-width:66ch; }
 
+  .updates li { display:grid; grid-template-columns: 11rem minmax(0,1fr); gap:0 1.5rem; }
+  .updates .when { color:var(--muted); font-size:.95rem; font-variant-numeric:tabular-nums; }
+  .updates .note { margin-top:.25rem; }
+  @media (max-width: 620px) {
+    .updates li { grid-template-columns:1fr; gap:.2rem; }
+  }
+
   /* ---------- publications ---------- */
   .pubs { list-style:none; margin:0; padding:0; max-width:78ch; }
   .pubs li { padding:1rem 0; border-top:1px solid var(--rule); }
@@ -312,10 +319,15 @@
     </div>
   </article>
 
-  <!-- TODO(max): swap the placeholder for the video Max is sending. -->
   <article class="project">
     <div class="project-media">
-      <div class="placeholder">Video coming soon</div>
+      <video controls muted playsinline preload="none"
+             poster="assets/forceful/forceful-poster.jpg"
+             aria-label="Overview video of the forceful skill acquisition work">
+        <source src="assets/forceful/forceful.mp4" type="video/mp4">
+        <p>Your browser cannot play this video.
+           <a href="assets/forceful/forceful.mp4">Download the overview (MP4)</a>.</p>
+      </video>
     </div>
     <div class="project-body">
       <h3>Forceful Skill Acquisition</h3>
@@ -356,6 +368,36 @@
         Dr. Nikolaus Correll.</p>
     </div>
   </article>
+</section>
+
+<section id="updates" class="wrap">
+  <h2>Updates</h2>
+  <!-- Newest first. Copy an <li>, change the <time> and the text. -->
+  <ul class="entries updates">
+    <li>
+      <div class="when"><time datetime="2026-08-21">21 August 2026</time></div>
+      <div>
+        <div class="role">GOLEM preprint posted</div>
+        <p class="note">The humanoid autonomy stack is on arXiv and under review at
+          IEEE-RAS Humanoids 2026.</p>
+      </div>
+    </li>
+    <li>
+      <div class="when"><time datetime="2026-03-19">19 March 2026</time></div>
+      <div>
+        <div class="role">RAPID accepted to IEEE CASE 2026</div>
+        <p class="note">Agentic EV battery disassembly on a UR16e and a linear gantry.</p>
+      </div>
+    </li>
+    <li>
+      <div class="when"><time datetime="2025-05-14">14 May 2025</time></div>
+      <div>
+        <div class="role">Forceful skill acquisition preprint posted</div>
+        <p class="note">Eliciting wrenches rather than trajectories from a vision-language
+          model, across 220 experiments on two robot platforms.</p>
+      </div>
+    </li>
+  </ul>
 </section>
 
 <section id="teaching" class="wrap">
