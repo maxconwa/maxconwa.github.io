@@ -354,10 +354,15 @@
     </div>
   </article>
 
-  <!-- TODO(max): add media for this project. -->
   <article class="project">
     <div class="project-media">
-      <div class="placeholder">Media coming soon</div>
+      <video controls muted playsinline preload="none"
+             poster="assets/world-models/tetris-poster.jpg"
+             aria-label="Video of an agent playing Tetris with a Dreamer world model">
+        <source src="assets/world-models/tetris.mp4" type="video/mp4">
+        <p>Your browser cannot play this video.
+           <a href="assets/world-models/tetris.mp4">Download the Tetris video (MP4)</a>.</p>
+      </video>
     </div>
     <div class="project-body">
       <h3>Planning with Learned World Models<span class="wip">Work in progress</span></h3>
@@ -366,6 +371,29 @@
         planning.</p>
       <p class="detail">Ongoing PhD work at CU Boulder with Dr. Zachary Sunberg and
         Dr. Nikolaus Correll.</p>
+    </div>
+  </article>
+
+  <!-- TODO(max): write the pitch and detail for this project. -->
+  <article class="project">
+    <div class="project-media">
+      <video controls muted playsinline preload="none"
+             poster="assets/game-theoretic/game-theoretic-poster.jpg"
+             aria-label="Simulation video of lower-body, upper-body, and whole-body humanoid control policies">
+        <source src="assets/game-theoretic/game-theoretic.mp4" type="video/mp4">
+        <p>Your browser cannot play this video.
+           <a href="assets/game-theoretic/game-theoretic.mp4">Download the policy video (MP4)</a>.</p>
+      </video>
+    </div>
+    <div class="project-body">
+      <h3>Game-Theoretic Humanoid Control<span class="wip">Work in progress</span></h3>
+      <p class="pitch">Control policies for a humanoid&rsquo;s lower body, upper body, and whole
+        body, trained in simulation.</p>
+      <p class="detail">Ongoing PhD work at CU Boulder. The video shows each policy in turn:
+        lower body, upper body, then whole body.</p>
+      <ul class="tech">
+        <li>Isaac Lab</li><li>Reinforcement learning</li>
+      </ul>
     </div>
   </article>
 </section>
