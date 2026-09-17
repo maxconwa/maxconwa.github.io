@@ -1,0 +1,199 @@
+/* Learning section. Depends on the tokens in /assets/css/base.css. */
+
+/* ---------- page furniture ---------- */
+.crumbs { padding-block: 1.25rem .5rem; }
+.crumbs ol { display:flex; flex-wrap:wrap; gap:.4rem; margin:0; padding:0; list-style:none;
+  font-size:.88rem; color:var(--muted); }
+.crumbs li + li::before { content:"/"; margin-right:.4rem; color:var(--rule); }
+.crumbs a { color:var(--muted); }
+.crumbs a:hover { color:var(--accent); }
+
+.learn-intro { padding-block: 1rem 2rem; }
+.learn-intro h1 { font-size: clamp(2rem, 5vw, 2.8rem); letter-spacing:-.028em; margin:0 0 .75rem; }
+.prose { max-width:62ch; margin:0; font-size:1.06rem; }
+
+section.graph-section, section.list-section { padding-block: clamp(2rem,5vw,3.25rem); border-top:1px solid var(--rule); }
+.list-section h2, .lesson-next h2 {
+  font-size:.8rem; text-transform:uppercase; letter-spacing:.14em;
+  color:var(--muted); font-weight:600; margin:0 0 1.5rem;
+}
+
+/* ---------- the graph ---------- */
+.graph-shell { display:grid; grid-template-columns: minmax(0,1fr) 19rem; gap:1.5rem; align-items:start; }
+.graph-canvas {
+  position:relative; overflow:hidden; border:1px solid var(--rule); border-radius:12px;
+  background:var(--card); box-shadow:var(--shadow);
+  height:clamp(24rem, 62vh, 40rem); touch-action:none; cursor:grab;
+}
+.graph-canvas.is-panning { cursor:grabbing; }
+.graph-canvas svg { width:100%; height:100%; display:block; }
+
+/* --rule is too faint for a line that has to be followed across the canvas. */
+.edge { fill:none; stroke:var(--muted); stroke-opacity:.5; stroke-width:1.6; }
+.edge-head { fill:var(--muted); fill-opacity:.55; }
+.node-box { fill:var(--bg); stroke:var(--track, var(--muted)); stroke-width:1.5; }
+.node-tab { fill:var(--track, var(--muted)); }
+.node-label { fill:var(--fg); font-size:13px; font-weight:600; }
+.node-meta  { fill:var(--muted); font-size:11px; }
+.node a { text-decoration:none; }
+.node a:hover .node-box { stroke-width:2.4; }
+.node a:focus-visible .node-box { stroke:var(--accent); stroke-width:2.4; }
+
+/* Selection states. Applied by graph.js; without JS everything stays legible. */
+.graph-canvas.has-selection .node { opacity:.26; }
+.graph-canvas.has-selection .node.is-selected,
+.graph-canvas.has-selection .node.is-ancestor,
+.graph-canvas.has-selection .node.is-descendant { opacity:1; }
+.node.is-selected .node-box { stroke:var(--accent); stroke-width:2.5; }
+.node.is-selected .node-label { fill:var(--accent); }
+.node.is-descendant .node-box { stroke-dasharray:4 3; }
+.graph-canvas.has-selection .edge-group { opacity:.16; }
+.graph-canvas.has-selection .edge-group.is-lit { opacity:1; }
+.edge-group.is-lit .edge { stroke:var(--accent); stroke-width:2.2; }
+.edge-group.is-lit .edge-head { fill:var(--accent); }
+
+.graph-hint { color:var(--muted); font-size:.9rem; margin:.9rem 0 0; max-width:60ch; }
+.legend { display:flex; flex-wrap:wrap; gap:.5rem 1.25rem; margin:.9rem 0 0; padding:0;
+  list-style:none; font-size:.85rem; color:var(--muted); }
+.legend li { display:flex; align-items:center; gap:.45rem; }
+.swatch { width:.7rem; height:.7rem; border-radius:3px; background:var(--track); display:inline-block; }
+
+[data-track="1"] { --track: var(--track-1); }
+[data-track="2"] { --track: var(--track-2); }
+[data-track="3"] { --track: var(--track-3); }
+[data-track="0"] { --track: var(--track-other); }
+
+/* ---------- side panel ---------- */
+.graph-panel {
+  position:sticky; top:1.5rem; border:1px solid var(--rule); border-radius:12px;
+  background:var(--card); padding:1.15rem 1.25rem; font-size:.95rem;
+}
+.panel-empty { color:var(--muted); margin:0; font-size:.9rem; }
+.graph-panel h2 { font-size:1.15rem; margin:0 0 .35rem; letter-spacing:-.015em; line-height:1.25; }
+.graph-panel .panel-summary { color:var(--muted); margin:0 0 .9rem; font-size:.92rem; }
+.graph-panel h3 {
+  font-size:.7rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);
+  font-weight:600; margin:.9rem 0 .35rem;
+}
+.graph-panel ul { margin:0; padding:0; list-style:none; }
+.graph-panel ul li { padding:.15rem 0; font-size:.9rem; }
+.graph-panel .btn { margin-top:1rem; }
+
+/* ---------- lesson list (mobile view, no-JS view, and the table view) ---------- */
+.lesson-list { list-style:none; margin:0; padding:0; max-width:78ch; counter-reset:lesson; }
+.lesson-list li { padding:1.1rem 0; border-top:1px solid var(--rule); }
+.lesson-list li:first-child { border-top:0; padding-top:0; }
+.lesson-list li[aria-current="true"] { background:var(--tag-bg); border-radius:8px; padding-inline:.9rem; }
+.row-title { font-weight:600; font-size:1.05rem; }
+.row-fmt, .row-run {
+  font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; font-weight:600;
+  color:var(--muted); background:var(--tag-bg); border-radius:999px;
+  padding:.2rem .55rem; margin-left:.5rem; white-space:nowrap;
+}
+.row-summary { color:var(--muted); margin:.35rem 0 0; max-width:66ch; font-size:.95rem; }
+.row-prereqs { color:var(--muted); margin:.35rem 0 0; font-size:.88rem; }
+
+/* ---------- lesson page ---------- */
+.lesson { padding-block: 1rem 3rem; }
+.lesson-head { max-width:72ch; border-bottom:1px solid var(--rule); padding-bottom:1.5rem; margin-bottom:2rem; }
+.kicker {
+  font-size:.72rem; text-transform:uppercase; letter-spacing:.14em; font-weight:600;
+  color:var(--track, var(--muted)); margin:0 0 .5rem;
+}
+.lesson h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); letter-spacing:-.025em; line-height:1.12; margin:0 0 .6rem; }
+.lesson-summary { font-size:1.12rem; color:var(--fg); margin:0 0 1.1rem; max-width:62ch; }
+
+.badges { display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 1.1rem; padding:0; list-style:none; }
+.badge, .badge-plain {
+  font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; font-weight:600;
+  color:var(--muted); background:var(--tag-bg); border-radius:999px; padding:.25rem .65rem;
+}
+.badge-run { color:var(--accent); }
+.badge-plain { background:none; padding-inline:0; text-transform:none; letter-spacing:0; font-weight:400; }
+
+.rel-strip { display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem .75rem; margin:0 0 1.2rem; }
+.rel-label { font-size:.72rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); font-weight:600; }
+.rel-strip ul { display:flex; flex-wrap:wrap; gap:.4rem; margin:0; padding:0; list-style:none; }
+.rel-strip li a {
+  display:inline-block; font-size:.88rem; background:var(--tag-bg);
+  border-radius:6px; padding:.2rem .6rem; color:var(--fg);
+}
+.rel-strip li a:hover { color:var(--accent); text-decoration:none; }
+
+.lesson-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; }
+.btn {
+  display:inline-block; padding:.6rem 1.15rem; border-radius:7px; border:0; cursor:pointer;
+  background:var(--fg); color:var(--bg); font-weight:600; font-size:.95rem; font-family:inherit;
+}
+.btn:hover { text-decoration:none; opacity:.87; }
+.btn[disabled] { opacity:.5; cursor:default; }
+.btn-ghost {
+  display:inline-block; padding:.55rem 1.05rem; border-radius:7px;
+  border:1px solid var(--rule); color:var(--fg); font-weight:600; font-size:.92rem;
+}
+.btn-ghost:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
+.kernel-status { font-size:.85rem; color:var(--muted); }
+
+/* ---------- lesson body ---------- */
+.lesson-body { max-width:72ch; }
+.lesson-body h2 { font-size:1.5rem; letter-spacing:-.018em; margin:2.5rem 0 .75rem; line-height:1.2; }
+.lesson-body h3 { font-size:1.2rem; margin:2rem 0 .6rem; line-height:1.25; }
+.lesson-body p { margin:0 0 1rem; }
+.lesson-body ul, .lesson-body ol { margin:0 0 1rem; padding-left:1.4rem; }
+.lesson-body li { margin:.25rem 0; }
+.lesson-body blockquote {
+  margin:1.25rem 0; padding:.1rem 0 .1rem 1.1rem;
+  border-left:3px solid var(--rule); color:var(--muted);
+}
+.lesson-body img { border-radius:8px; border:1px solid var(--rule); background:var(--bg); margin:1rem 0; }
+.lesson-body table { border-collapse:collapse; width:100%; margin:1.25rem 0; font-size:.92rem; }
+.lesson-body th, .lesson-body td { text-align:left; padding:.5rem .7rem; border-bottom:1px solid var(--rule); }
+.lesson-body th { font-weight:600; }
+.lesson-body :not(pre) > code {
+  font-size:.88em; background:var(--tag-bg); border-radius:4px; padding:.12em .38em;
+}
+
+/* ---------- cells ---------- */
+.cell { margin:1.5rem 0; }
+.cell-md { margin:0; }
+.code, .out {
+  border:1px solid var(--rule); border-radius:9px; background:var(--card);
+  overflow-x:auto; font-size:.86rem; line-height:1.55;
+}
+.code pre, .out { margin:0; padding:.85rem 1rem; }
+.code pre { background:none; border:0; }
+code, pre, .cell-editor { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.outputs:empty { display:none; }
+.out { margin-top:.4rem; white-space:pre-wrap; color:var(--muted); }
+.out-image { display:block; padding:.6rem; }
+.out-image img { margin:0; border:0; border-radius:4px; }
+.out-error { color:#b3261e; border-color:#b3261e55; white-space:pre-wrap; }
+@media (prefers-color-scheme: dark) { .out-error { color:#ff8a80; } }
+
+/* live cells */
+.cell-editor {
+  display:block; width:100%; border:1px solid var(--accent); border-radius:9px;
+  background:var(--card); color:var(--fg); padding:.85rem 1rem;
+  font-size:.86rem; line-height:1.55; resize:vertical; tab-size:4;
+}
+.cell-bar { display:flex; align-items:center; gap:.6rem; margin-top:.4rem; }
+.cell-run {
+  font:inherit; font-size:.8rem; font-weight:600; cursor:pointer;
+  border:1px solid var(--rule); border-radius:6px; background:var(--bg);
+  color:var(--fg); padding:.25rem .7rem;
+}
+.cell-run:hover { border-color:var(--accent); color:var(--accent); }
+.cell-note { font-size:.8rem; color:var(--muted); }
+
+.lesson-next { max-width:72ch; margin-top:3rem; border-top:1px solid var(--rule); padding-top:2rem; }
+.next-list { list-style:none; margin:0; padding:0; }
+.next-list li { padding:.8rem 0; border-top:1px solid var(--rule); }
+.next-list li:first-child { border-top:0; padding-top:0; }
+.next-list a { font-weight:600; }
+.next-list p { color:var(--muted); margin:.2rem 0 0; font-size:.93rem; }
+
+@media (max-width: 860px) {
+  .graph-shell { grid-template-columns:1fr; }
+  .graph-panel { position:static; }
+  .graph-canvas { height:clamp(20rem, 52vh, 30rem); }
+}

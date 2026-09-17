@@ -1,0 +1,80 @@
+{% extends "base.html.j2" %}
+{% block crumbs %}
+    <li><a href="/learn/">Learning</a></li>
+    <li aria-current="page">{{ lesson.title }}</li>
+{%- endblock %}
+
+{% block head %}
+<script type="application/ld+json">
+{{ jsonld }}
+</script>
+{%- endblock %}
+
+{% block content %}
+<article class="lesson wrap">
+  <header class="lesson-head">
+    {%- if lesson.track %}
+    <p class="kicker" data-track="{{ track_slot }}">{{ lesson.track }}</p>
+    {%- endif %}
+    <h1>{{ lesson.title }}</h1>
+    <p class="lesson-summary">{{ lesson.summary }}</p>
+
+    <ul class="badges">
+      <li class="badge">{{ 'Notebook' if lesson.fmt == 'notebook' else 'Article' }}</li>
+      {%- if lesson.runnable %}
+      <li class="badge badge-run">Runs in your browser</li>
+      {%- endif %}
+      {%- if lesson.updated %}
+      <li class="badge-plain">Updated {{ lesson.updated }}</li>
+      {%- endif %}
+    </ul>
+
+    {%- if prereqs %}
+    <div class="rel-strip">
+      <span class="rel-label">Before this</span>
+      <ul>
+        {%- for p in prereqs %}
+        <li><a href="{{ p.url }}">{{ p.title }}</a></li>
+        {%- endfor %}
+      </ul>
+    </div>
+    {%- endif %}
+
+    <div class="lesson-actions">
+      {%- if lesson.runnable %}
+      <button type="button" class="btn" id="activate"
+              data-packages="{{ lesson.packages | join(',') }}">Run this lesson in your browser</button>
+      <span class="kernel-status" id="kernel-status" role="status" aria-live="polite"></span>
+      {%- elif lesson.fmt == 'notebook' %}
+      <a class="btn-ghost" href="{{ colab_url }}">Open in Colab</a>
+      {%- else %}
+      <a class="btn-ghost" href="{{ source_url }}">View source</a>
+      {%- endif %}
+    </div>
+  </header>
+
+  <div class="lesson-body{% if lesson.runnable %} is-runnable{% endif %}">
+{{ body }}
+  </div>
+
+  {%- if unlocks %}
+  <footer class="lesson-next">
+    <h2>Next</h2>
+    <ul class="next-list">
+      {%- for n in unlocks %}
+      <li>
+        <a href="{{ n.url }}">{{ n.title }}</a>
+        <p>{{ n.summary }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+  </footer>
+  {%- endif %}
+</article>
+{%- endblock %}
+
+{% block scripts %}
+{%- if lesson.runnable %}
+<script src="/learn/static/runner.js" defer></script>
+{%- endif %}
+{%- endblock %}

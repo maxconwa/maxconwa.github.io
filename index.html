@@ -21,41 +21,8 @@
 <meta property="og:image:alt" content="The Correll Lab's Unitree H1 humanoid at work in the lab.">
 <meta name="twitter:card" content="summary_large_image">
 
+<link rel="stylesheet" href="/assets/css/base.css">
 <style>
-  :root {
-    --bg:#fdfdfc; --fg:#16181d; --muted:#5b6270; --rule:#e4e5e9;
-    --accent:#2f5fd0; --card:#f5f5f3; --tag-bg:#eceef2;
-    --shadow: 0 1px 2px rgba(16,18,22,.06), 0 8px 24px rgba(16,18,22,.06);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg:#101216; --fg:#e9eaee; --muted:#99a0ac; --rule:#262a31;
-      --accent:#8db0ff; --card:#171a20; --tag-bg:#1e222a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
-    }
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin:0; background:var(--bg); color:var(--fg);
-    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-                 "Helvetica Neue", Arial, sans-serif;
-    font-size: 17px; line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  img, video { max-width:100%; display:block; }
-  a { color:var(--accent); text-decoration:none; }
-  a:hover { text-decoration:underline; text-underline-offset:3px; }
-  :focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:3px; }
-
-  .wrap { max-width:1060px; margin:0 auto; padding-inline:1.5rem; }
-  .skip {
-    position:absolute; left:-9999px; top:0; background:var(--bg); color:var(--fg);
-    padding:.6rem 1rem; border:1px solid var(--rule); border-radius:6px; z-index:10;
-  }
-  .skip:focus { left:1rem; top:1rem; }
-
   /* ---------- hero ---------- */
   .hero { padding: clamp(3rem, 9vw, 6rem) 0 clamp(2.5rem, 6vw, 4rem); }
   .hero-grid {
@@ -161,21 +128,11 @@
   .pubs .venue { color:var(--muted); font-size:.9rem; }
   .pubs .me { color:var(--fg); font-weight:600; }
 
-  footer {
-    border-top:1px solid var(--rule); padding-block:2rem 3rem;
-    color:var(--muted); font-size:.88rem;
-    display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; justify-content:space-between;
-  }
-
   @media (max-width: 760px) {
-    body { font-size:16px; }
     .hero-grid { grid-template-columns:1fr; }
     .portrait { width:112px; height:112px; order:-1; }
     .project { grid-template-columns:1fr; }
     .project:nth-of-type(even) .project-media { order:0; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    * { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
   }
 </style>
 <script type="application/ld+json">
@@ -421,6 +378,19 @@
         AI Robotics, Embedded Systems, and Advanced Algorithms.</p>
     </li>
   </ul>
+</section>
+
+<section id="learning" class="wrap">
+  <h2>Learning</h2>
+  <p class="prose">
+    I write lessons on the math and the systems behind humanoid autonomy, published as
+    notebooks and articles. They are arranged as a graph rather than a reading list:
+    every lesson states what it assumes, so you can start anywhere and trace back to
+    whatever you are missing. The notebooks that can run in a browser do.
+  </p>
+  <p class="prose cta">
+    <a class="btn" href="/learn/">Browse the lessons</a>
+  </p>
 </section>
 
 <section id="publications" class="wrap">

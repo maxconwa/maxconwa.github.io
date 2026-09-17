@@ -88,18 +88,21 @@ Nothing generated is committed. `index.html`, `404.html`, `robots.txt`,
 
 ## Build pipeline
 
-`python build/build.py --out _site` runs five stages. Each stage is a pure
+`python build/sitegen.py --out _site` runs five stages. Each stage is a pure
 function over the previous stage's output so it can be tested in isolation.
 
 1. **Discover and parse.** Walk `lessons/`, split front-matter from body, and
    produce a `Lesson` record per file. Notebooks are read with `nbformat`.
 2. **Validate.** See *Validation* below. Collects every error, then fails once.
-3. **Render bodies.** Notebooks go through `nbconvert`'s `HTMLExporter` with
-   `template_name="basic"` — body markup only, no Jupyter theme — plus
-   `ExtractOutputPreprocessor` to write images to `learn/<slug>/output-N.png`.
-   Markdown goes through `markdown-it-py` (tables, linkify, dollar-math) with a
-   Pygments fence highlighter, so both formats produce the same `.highlight`
-   markup and share one stylesheet.
+3. **Render bodies.** Notebook cells are rendered directly rather than
+   through `nbconvert`: markdown cells go through the same `markdown-it-py`
+   pipeline the `.md` lessons use, code cells through the same Pygments
+   highlighter, and image outputs are written to `learn/<slug>/output-N.png`.
+   nbconvert's "basic" template emits JupyterLab's `jp-*` class soup, which
+   would have to be restyled wholesale; rendering the cells directly means
+   both formats produce identical markup, share one stylesheet, give the live
+   runner a single DOM shape to find, and drop a heavy dependency.
+   (Changed during implementation — the spec originally called for nbconvert.)
 4. **Lay out the graph.** Build a `networkx.DiGraph`, emit DOT with
    `rankdir=TB` and fixed node sizes, shell out to `dot -Tplain`, and parse the
    result: node centres and sizes in inches, plus cubic bezier control points
@@ -185,8 +188,8 @@ with its own Run button and output area. A status chip reports booting, ready,
 running, or failed. There is a Run-all and a Reset that restores the original
 sources.
 
-- **Editing** uses a styled `<textarea>` sized to its content — no editor
-  dependency. Syntax highlighting is present on the static page and is dropped
+- **Editing** uses a styled `<textarea>` sized to its content, with Tab
+  indenting rather than escaping the cell — no editor dependency. Syntax highlighting is present on the static page and is dropped
   once a cell becomes editable. This is a deliberate trade (see *Deferred*).
 - **Plots** work through a small Python shim injected at kernel boot: after each
   cell, any open matplotlib figures are serialised to PNG and appended to that
@@ -233,7 +236,7 @@ build/requirements.txt`, run `pytest`, run the build, upload `_site` with
 Local preview keeps working the same way it does today:
 
 ```sh
-python build/build.py --out _site && python -m http.server -d _site 8000
+python build/sitegen.py --out _site && python -m http.server -d _site 8000
 ```
 
 **Manual step Max must do once:** in the repo's Settings → Pages, change the

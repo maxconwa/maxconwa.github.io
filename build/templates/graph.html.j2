@@ -1,0 +1,61 @@
+{% extends "base.html.j2" %}
+{% block crumbs %}
+    <li aria-current="page">Learning</li>
+{%- endblock %}
+
+{% block content %}
+<section class="wrap learn-intro">
+  <h1>Learning</h1>
+  <p class="prose">{{ intro }}</p>
+</section>
+
+<section class="graph-section">
+  <div class="wrap">
+    <div class="graph-shell" id="graph-shell">
+      <div class="graph-canvas" id="graph-canvas">
+{{ svg }}
+      </div>
+      <aside class="graph-panel" id="graph-panel" aria-live="polite">
+        <p class="panel-empty">Select a lesson to see what it needs and what it leads to.</p>
+      </aside>
+    </div>
+    <p class="graph-hint">
+      Arrows point from a lesson to the ones it prepares you for.
+      Select a node to trace everything it depends on.
+    </p>
+    {%- if tracks %}
+    <ul class="legend">
+      {%- for name, slot in tracks %}
+      <li><span class="swatch" data-track="{{ slot }}"></span>{{ name }}</li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="wrap list-section">
+  <h2>All lessons</h2>
+  <ol class="lesson-list" id="lesson-list">
+    {%- for row in rows %}
+    <li id="row-{{ row.slug }}" data-slug="{{ row.slug }}">
+      <a class="row-title" href="{{ row.url }}">{{ row.title }}</a>
+      <span class="row-fmt">{{ 'Notebook' if row.fmt == 'notebook' else 'Article' }}</span>
+      {%- if row.runnable %}<span class="row-run">runs in browser</span>{% endif %}
+      <p class="row-summary">{{ row.summary }}</p>
+      {%- if row.prereqs %}
+      <p class="row-prereqs">Needs first:
+        {%- for p in row.prereqs %}
+        <a href="{{ p.url }}">{{ p.title }}</a>{{ "," if not loop.last }}
+        {%- endfor %}
+      </p>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ol>
+</section>
+{%- endblock %}
+
+{% block scripts %}
+<script type="application/json" id="graph-data">{{ graph_json }}</script>
+<script src="/learn/static/graph.js" defer></script>
+{%- endblock %}

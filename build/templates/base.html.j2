@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page_title }}</title>
+<meta name="description" content="{{ description }}">
+<meta name="theme-color" content="#fdfdfc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101216" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="{{ site_url }}{{ path }}">
+<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/learn/static/learn.css">
+{%- if has_math %}
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+{%- endif %}
+
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:title" content="{{ og_title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ site_url }}{{ path }}">
+<meta property="og:image" content="{{ site_url }}/assets/golem/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+{%- block head %}{% endblock %}
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<nav class="crumbs wrap" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Max Conway</a></li>
+    {%- block crumbs %}{% endblock %}
+  </ol>
+</nav>
+
+<main id="content">
+{%- block content %}{% endblock %}
+</main>
+
+<footer class="wrap">
+  <span>Max Conway &middot; Boulder, Colorado</span>
+  <span><a href="mailto:max.conway@colorado.edu">max.conway@colorado.edu</a></span>
+</footer>
+{%- if has_math %}
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/auto-render.min.js"></script>
+<script>
+  // Deferred scripts finish before DOMContentLoaded, so KaTeX is ready here.
+  document.addEventListener('DOMContentLoaded', function () {
+    renderMathInElement(document.getElementById('content'), {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+      throwOnError: false
+    });
+  });
+</script>
+{%- endif %}
+{%- block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,8 @@
+nbformat>=5.10
+jinja2>=3.1
+markdown-it-py>=3.0
+mdit-py-plugins>=0.4
+networkx>=3.2
+Pygments>=2.17
+PyYAML>=6.0
+pytest>=8.0
