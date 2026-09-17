@@ -182,6 +182,11 @@ code, pre, .cell-editor { font-family: ui-monospace, SFMono-Regular, Menlo, Cons
 .next-list a { font-weight:600; }
 .next-list p { color:var(--muted); margin:.2rem 0 0; font-size:.93rem; }
 
+.lesson-disclaimer {
+  max-width:72ch; margin:2.5rem 0 0; padding-top:1.25rem;
+  border-top:1px solid var(--rule); color:var(--muted); font-size:.85rem;
+}
+
 @media (max-width: 860px) {
   .graph-shell { grid-template-columns:1fr; }
   .graph-panel { position:static; }

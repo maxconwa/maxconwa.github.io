@@ -33,12 +33,23 @@ FRONT_MATTER = re.compile(r"\A---[ \t]*\r?\n(.*?)\r?\n---[ \t]*\r?\n?", re.DOTAL
 SLUG = re.compile(r"\A[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 
 
-def split_front_matter(text: str) -> tuple[dict, str]:
+def split_front_matter(text: str, source=None) -> tuple[dict, str]:
     """Split a leading YAML front-matter block from the body it precedes."""
     match = FRONT_MATTER.match(text)
     if not match:
         return {}, text
-    meta = yaml.safe_load(match.group(1))
+    try:
+        meta = yaml.safe_load(match.group(1))
+    except yaml.YAMLError as error:
+        # Overwhelmingly this is an unquoted value containing ": ", which is
+        # a natural thing to write in a title or summary. Say so, rather than
+        # letting a parser traceback out.
+        raise SystemExit(
+            f"{source}: front matter is not valid YAML.\n"
+            f"  {error}\n"
+            "  A value containing ': ' has to be quoted, for example:\n"
+            '    summary: "Momentum: why everything is trained with this."'
+        ) from error
     if not isinstance(meta, dict):
         return {}, text
     return meta, text[match.end():]
@@ -92,13 +103,13 @@ def parse_lesson(path: pathlib.Path) -> Lesson:
         # Front matter lives in a leading raw cell: editable in any Jupyter
         # UI and visible in diffs, unlike notebook metadata.
         if notebook.cells and notebook.cells[0].cell_type == "raw":
-            meta, _ = split_front_matter(notebook.cells[0].source)
+            meta, _ = split_front_matter(notebook.cells[0].source, source=path)
             if meta:
                 notebook.cells = notebook.cells[1:]
         return _lesson_from(meta, slug=slug, fmt="notebook", source=path,
                             notebook=notebook)
 
-    meta, body = split_front_matter(path.read_text())
+    meta, body = split_front_matter(path.read_text(), source=path)
     return _lesson_from(meta, slug=slug, fmt="article", source=path, body=body)
 
 
@@ -633,8 +644,12 @@ def build_site(root: pathlib.Path, lessons_dir: pathlib.Path,
         trim_blocks=True, lstrip_blocks=False,
     )
 
+    # Rebuilt from scratch, so a lesson that has been deleted or renamed
+    # cannot leave its page behind in an output directory that already exists.
     learn = out_dir / "learn"
-    learn.mkdir(parents=True, exist_ok=True)
+    if learn.exists():
+        shutil.rmtree(learn)
+    learn.mkdir(parents=True)
 
     for lesson in lessons:
         destination = learn / lesson.slug
@@ -680,8 +695,6 @@ def build_site(root: pathlib.Path, lessons_dir: pathlib.Path,
     # Static assets. Pygments styles are appended to the hand-written
     # stylesheet so a lesson page still loads exactly one CSS file of our own.
     static = learn / "static"
-    if static.exists():
-        shutil.rmtree(static)
     shutil.copytree(HERE / "static", static)
     with (static / "learn.css").open("a") as handle:
         handle.write(pygments_css())

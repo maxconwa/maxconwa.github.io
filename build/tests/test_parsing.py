@@ -173,3 +173,22 @@ def test_slug_containing_uppercase_is_rejected():
 
 def test_conventional_kebab_case_slug_is_accepted():
     assert b.validate([lesson("gradient-descent-2")]) == []
+
+
+# A summary like "momentum: why it works" is natural to write and is invalid
+# unquoted YAML. The build must say so rather than surface a parser traceback.
+
+def test_unparseable_front_matter_names_the_file_and_suggests_quoting(tmp_path):
+    path = write(tmp_path, "adam.md", """
+        ---
+        title: Adam
+        summary: Momentum: why everything is trained with this.
+        ---
+
+        Body.
+        """)
+    with pytest.raises(SystemExit) as raised:
+        b.parse_lesson(path)
+    message = str(raised.value)
+    assert "adam.md" in message
+    assert "quote" in message.lower()

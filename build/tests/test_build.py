@@ -166,3 +166,27 @@ def test_a_missing_shared_asset_fails_the_build(site):
     out.mkdir(parents=True, exist_ok=True)
     with pytest.raises(SystemExit, match="broken internal links"):
         b.build_site(root, lessons, out)
+
+
+def test_every_lesson_page_carries_the_ai_disclaimer(site):
+    """Disclosure belongs in the template, not in each lesson's prose, so it
+    cannot be forgotten on a new lesson."""
+    out = build(site)
+    for slug in ("alpha", "beta", "gamma"):
+        html = (out / "learn" / slug / "index.html").read_text()
+        assert "lesson-disclaimer" in html, f"{slug} has no disclaimer"
+        assert "AI assistance" in html, f"{slug} disclaimer text missing"
+
+
+def test_a_deleted_lesson_does_not_survive_in_the_output(site):
+    """Rebuilding into an existing output directory must not leave the page
+    of a lesson that has since been removed or renamed."""
+    root, lessons, out = site
+    build(site)
+    assert (out / "learn" / "gamma" / "index.html").is_file()
+
+    (lessons / "gamma.ipynb").unlink()
+    b.build_site(root, lessons, out)
+
+    assert not (out / "learn" / "gamma").exists()
+    assert (out / "learn" / "alpha" / "index.html").is_file()
