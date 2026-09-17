@@ -11,6 +11,7 @@
 .learn-intro { padding-block: 1rem 2rem; }
 .learn-intro h1 { font-size: clamp(2rem, 5vw, 2.8rem); letter-spacing:-.028em; margin:0 0 .75rem; }
 .prose { max-width:62ch; margin:0; font-size:1.06rem; }
+.learn-disclaimer { color:var(--muted); font-size:.92rem; margin:0 0 1rem; }
 
 section.graph-section, section.list-section { padding-block: clamp(2rem,5vw,3.25rem); border-top:1px solid var(--rule); }
 .list-section h2, .lesson-next h2 {

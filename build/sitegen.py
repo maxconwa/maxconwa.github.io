@@ -585,9 +585,14 @@ from markupsafe import Markup
 
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT_FILES = ["index.html", "404.html", "robots.txt", ".nojekyll"]
-INTRO = ("Lessons I have written for the courses I teach and the topics I work in. "
-         "Arrows run from a lesson to the ones it prepares you for, so you can start "
-         "anywhere and see exactly what it assumes.")
+# Shown at the top of /learn/ and at the foot of every lesson, from one
+# constant so the two cannot drift apart.
+DISCLAIMER = ("These lessons are written by me. I use AI assistance to integrate them "
+              "into this site and to generate boilerplate code.")
+
+INTRO = ("These are technologies I have found myself teaching to students over and "
+         "over, in one form or another. My hope is that this page is an open and free "
+         "place for anyone to learn them, for their own benefit.")
 
 
 def _script_safe(payload: str) -> str:
@@ -665,6 +670,7 @@ def build_site(root: pathlib.Path, lessons_dir: pathlib.Path,
             prereqs=prereqs,
             unlocks=[by_slug[s] for s in sorted(graph.successors(lesson.slug))],
             track_slot=slots.get(lesson.track, 0),
+            disclaimer=DISCLAIMER,
             jsonld=Markup(_jsonld(lesson, prereqs)),
             colab_url=f"https://colab.research.google.com/github/{REPO}/blob/main/lessons/{lesson.slug}.ipynb",
             source_url=f"https://github.com/{REPO}/blob/main/lessons/{lesson.slug}.md",
@@ -682,6 +688,7 @@ def build_site(root: pathlib.Path, lessons_dir: pathlib.Path,
         rows=[by_slug[slug] for slug in nx.topological_sort(graph)],
         tracks=sorted(slots.items(), key=lambda item: item[1]),
         intro=INTRO,
+        disclaimer=DISCLAIMER,
         has_math=False,
         page_title="Learning — Max Conway",
         og_title="Learning — Max Conway",

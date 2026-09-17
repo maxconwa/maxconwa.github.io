@@ -190,3 +190,12 @@ def test_a_deleted_lesson_does_not_survive_in_the_output(site):
 
     assert not (out / "learn" / "gamma").exists()
     assert (out / "learn" / "alpha" / "index.html").is_file()
+
+
+def test_the_disclaimer_is_one_wording_used_in_both_places(site):
+    """It appears on the section landing page and on every lesson, so the
+    text lives in one constant rather than in two templates."""
+    out = build(site)
+    assert b.DISCLAIMER in (out / "learn" / "index.html").read_text()
+    for slug in ("alpha", "beta", "gamma"):
+        assert b.DISCLAIMER in (out / "learn" / slug / "index.html").read_text()
