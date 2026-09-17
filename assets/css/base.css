@@ -45,6 +45,24 @@ a:hover { text-decoration:underline; text-underline-offset:3px; }
 }
 .skip:focus { left:1rem; top:1rem; }
 
+/* Buttons. Shared: the front page hero and every lesson page use both. */
+.btn {
+  display:inline-block; border:0; cursor:pointer; border-radius:7px;
+  padding:.6rem 1.15rem; background:var(--fg); color:var(--bg);
+  font-family:inherit; font-weight:600; font-size:.95rem; letter-spacing:.005em;
+}
+.btn:hover { text-decoration:none; opacity:.87; }
+.btn[disabled] { opacity:.5; cursor:default; }
+
+.btn-ghost {
+  display:inline-block; cursor:pointer; border-radius:7px;
+  border:1px solid var(--rule); background:none; color:var(--fg);
+  /* Border-inclusive padding, so it is exactly as tall as a .btn beside it. */
+  padding:calc(.6rem - 1px) calc(1.15rem - 1px);
+  font-family:inherit; font-weight:600; font-size:.95rem; letter-spacing:.005em;
+}
+.btn-ghost:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
+
 footer {
   border-top:1px solid var(--rule); padding-block:2rem 3rem;
   color:var(--muted); font-size:.88rem;

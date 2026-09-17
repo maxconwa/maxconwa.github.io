@@ -121,17 +121,7 @@ section.graph-section, section.list-section { padding-block: clamp(2rem,5vw,3.25
 .rel-strip li a:hover { color:var(--accent); text-decoration:none; }
 
 .lesson-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; }
-.btn {
-  display:inline-block; padding:.6rem 1.15rem; border-radius:7px; border:0; cursor:pointer;
-  background:var(--fg); color:var(--bg); font-weight:600; font-size:.95rem; font-family:inherit;
-}
-.btn:hover { text-decoration:none; opacity:.87; }
-.btn[disabled] { opacity:.5; cursor:default; }
-.btn-ghost {
-  display:inline-block; padding:.55rem 1.05rem; border-radius:7px;
-  border:1px solid var(--rule); color:var(--fg); font-weight:600; font-size:.92rem;
-}
-.btn-ghost:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
+/* .btn and .btn-ghost live in /assets/css/base.css — shared with the front page. */
 .kernel-status { font-size:.85rem; color:var(--muted); }
 
 /* ---------- lesson body ---------- */

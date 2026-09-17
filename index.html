@@ -47,12 +47,7 @@
   .links a { color:var(--fg); border-bottom:1px solid var(--rule); padding-bottom:2px; }
   .links a:hover { color:var(--accent); border-bottom-color:var(--accent); text-decoration:none; }
 
-  .btn {
-    display:inline-block; padding:.6rem 1.15rem; border-radius:7px;
-    background:var(--fg); color:var(--bg); font-weight:600; font-size:.95rem;
-    letter-spacing:.005em;
-  }
-  .btn:hover { text-decoration:none; opacity:.87; }
+  .hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.6rem; }
 
   /* ---------- sections ---------- */
   section { padding-block: clamp(2.75rem, 6vw, 4.5rem); border-top:1px solid var(--rule); }
@@ -177,7 +172,10 @@
         <li><a href="https://x.com/MaxConwa" rel="me">X</a></li>
         <li><a href="mailto:max.conway@colorado.edu">Email</a></li>
       </ul>
-      <a class="btn" href="assets/cv/max-conway-resume.pdf">Résumé (PDF)</a>
+      <div class="hero-actions">
+        <a class="btn" href="assets/cv/max-conway-resume.pdf">Résumé (PDF)</a>
+        <a class="btn-ghost" href="/learn/">Lessons</a>
+      </div>
     </div>
     <img class="portrait" src="assets/img/headshot.png" width="190" height="190"
          alt="Portrait of Max Conway">
