@@ -157,9 +157,15 @@
   .pubs li { padding:1rem 0; border-top:1px solid var(--rule); }
   .pubs li:first-child { border-top:0; padding-top:0; }
   .pubs .title { font-weight:600; }
+  .pubs .title a {
+    color:var(--fg); text-decoration:underline; text-decoration-color:var(--rule);
+    text-decoration-thickness:1px; text-underline-offset:3px;
+  }
+  .pubs .title a:hover { color:var(--accent); text-decoration-color:var(--accent); }
   .pubs .authors { color:var(--muted); font-size:.95rem; }
   .pubs .venue { color:var(--muted); font-size:.9rem; }
   .pubs .me { color:var(--fg); font-weight:600; }
+  .pubs-more { margin:1.5rem 0 0; color:var(--muted); font-size:.95rem; }
 
   footer {
     border-top:1px solid var(--rule); padding-block:2rem 3rem;
@@ -282,7 +288,8 @@
       <ul class="proj-links">
         <li><a href="https://golem-humanoid.github.io">Project site</a></li>
         <li><a href="https://github.com/correlllab/GOLEM">Code</a></li>
-        <li class="plain">Paper under review, IEEE-RAS Humanoids 2026</li>
+        <li><a href="https://arxiv.org/abs/2608.21550">Paper</a></li>
+        <li class="plain">Under review, IEEE-RAS Humanoids 2026</li>
       </ul>
     </div>
   </article>
@@ -314,6 +321,7 @@
         <li>Visual servoing</li><li>Motion planning</li><li>Docker</li>
       </ul>
       <ul class="proj-links">
+        <li><a href="https://arxiv.org/abs/2603.18520">Paper</a></li>
         <li class="plain">Accepted to IEEE CASE 2026</li>
       </ul>
     </div>
@@ -349,7 +357,7 @@
       </ul>
       <ul class="proj-links">
         <li><a href="https://scalingforce.github.io/">Project site</a></li>
-        <li><a href="https://arxiv.org/abs/2505.09731">arXiv:2505.09731</a></li>
+        <li><a href="https://arxiv.org/abs/2505.09731">Paper</a></li>
       </ul>
     </div>
   </article>
@@ -454,44 +462,50 @@
   <h2>Publications</h2>
   <ul class="pubs">
     <li>
-      <div class="title">GOLEM: Modular Humanoid Autonomy Towards Electric Vehicle Battery Disassembly</div>
+      <div class="title"><a href="https://arxiv.org/abs/2608.21550">GOLEM: Modular Humanoid Autonomy Towards Electric Vehicle Battery Disassembly</a></div>
       <div class="authors"><span class="me">Max Conway</span>, William Xie, Allen Devaraj,
         Yutong Zhang, Niraj Pudasaini, Mateo Feit, Adam Abid, Zachary Allen, Chen Liu, Xuan Tan,
         Jensen Lavering, Jason Chen, Lyle Antieau, Anthony Von Pischke, Alessandro Roncone,
         Zachary Sunberg, Nikolaus Correll</div>
       <div class="venue">Under review, IEEE-RAS Humanoids 2026 &middot;
-        <a href="https://arxiv.org/abs/2608.21550">arXiv:2608.21550</a></div>
+        <a href="https://arxiv.org/abs/2608.21550">arXiv:2608.21550</a> &middot;
+        <a href="https://arxiv.org/pdf/2608.21550">PDF</a></div>
     </li>
     <li>
-      <div class="title">Robotic Agentic Platform for Intelligent Electric Vehicle Disassembly</div>
+      <div class="title"><a href="https://arxiv.org/abs/2603.18520">Robotic Agentic Platform for Intelligent Electric Vehicle Disassembly</a></div>
       <div class="authors">Zachary Allen, <span class="me">Max Conway</span>, Lyle Antieau,
         Allen Ponraj, Nikolaus Correll</div>
       <div class="venue">Accepted to IEEE CASE 2026 &middot;
-        <a href="https://arxiv.org/abs/2603.18520">arXiv:2603.18520</a></div>
+        <a href="https://arxiv.org/abs/2603.18520">arXiv:2603.18520</a> &middot;
+        <a href="https://arxiv.org/pdf/2603.18520">PDF</a></div>
     </li>
     <li>
-      <div class="title">Unfettered Forceful Skill Acquisition with Physical Reasoning and
-        Coordinate Frame Labeling</div>
+      <div class="title"><a href="https://arxiv.org/abs/2505.09731">Unfettered Forceful Skill Acquisition with Physical Reasoning and
+        Coordinate Frame Labeling</a></div>
       <div class="authors">William Xie, <span class="me">Max Conway</span>, Yutong Zhang,
         Nikolaus Correll</div>
       <div class="venue">Preprint, 2025 &middot;
-        <a href="https://arxiv.org/abs/2505.09731">arXiv:2505.09731</a></div>
+        <a href="https://arxiv.org/abs/2505.09731">arXiv:2505.09731</a> &middot;
+        <a href="https://arxiv.org/pdf/2505.09731">PDF</a></div>
     </li>
     <li>
-      <div class="title">Learned Sensor Fusion for Robust Human Activity Recognition in
-        Challenging Environments</div>
+      <div class="title"><a href="https://doi.org/10.1109/IROS58592.2024.10802830">Learned Sensor Fusion for Robust Human Activity Recognition in
+        Challenging Environments</a></div>
       <div class="authors"><span class="me">Max Conway</span>, Brian Reily, Christopher Reardon</div>
       <div class="venue">IROS 2024 &middot;
         <a href="https://doi.org/10.1109/IROS58592.2024.10802830">10.1109/IROS58592.2024.10802830</a></div>
     </li>
     <li>
-      <div class="title">Data-Driven Hierarchical Open Set Recognition</div>
+      <div class="title"><a href="https://arxiv.org/abs/2411.02635">Data-Driven Hierarchical Open Set Recognition</a></div>
       <div class="authors">Andrew Hannum, <span class="me">Max Conway</span>, Mario Lopez,
         Andr&eacute; Harrison</div>
       <div class="venue">ICRA@40, 2024 &middot;
-        <a href="https://arxiv.org/abs/2411.02635">arXiv:2411.02635</a></div>
+        <a href="https://arxiv.org/abs/2411.02635">arXiv:2411.02635</a> &middot;
+        <a href="https://arxiv.org/pdf/2411.02635">PDF</a></div>
     </li>
   </ul>
+  <p class="pubs-more">Citations and the full list are on
+    <a href="https://scholar.google.com/citations?user=c3wtBgMAAAAJ&amp;hl=en">Google Scholar</a>.</p>
 </section>
 </main>
 

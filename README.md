@@ -13,6 +13,7 @@ Everything lives in `index.html`; the CSS is in the `<style>` block at the top.
   `<section id="research">`. Blocks alternate media left/right automatically, so
   order is all you control.
 - **Add a publication** — add an `<li>` to `<ul class="pubs">`, newest first.
+  Link the title to the paper's landing page, and give arXiv papers a PDF link.
 - **Colors** — the CSS custom properties under `:root` (and the
   `prefers-color-scheme: dark` block below it) define the whole palette.
 
