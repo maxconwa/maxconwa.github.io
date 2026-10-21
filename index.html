@@ -375,6 +375,35 @@
 
   <article class="project">
     <div class="project-media">
+      <img class="frame" src="assets/har/har-figure.png" width="598" height="359" loading="lazy"
+           alt="Architecture: each sensing modality passes through video feature extraction; a dense modality selector outputs a weight vector that linearly combines the videos before a video classifier.">
+    </div>
+    <div class="project-body">
+      <h3>Learned Sensor Fusion</h3>
+      <p class="expansion">Learned Sensor Fusion for Robust Human Activity Recognition in
+        Challenging Environments</p>
+      <p class="pitch">Activity recognition that keeps working in darkness, fog, and thermal
+        blur, by learning how much to trust each sensor.</p>
+      <p class="detail">
+        A dense modality selector reads features from every sensor stream and outputs a weight
+        vector, so the classifier sees a single learned combination of the inputs. That scored 24%
+        higher than single-modality approaches and matched existing fusion methods in far less
+        classification time &mdash; the speed that matters for robots in dangerous, degraded
+        environments. The work also released a multimodal activity dataset recorded under
+        darkness, fog, and thermal blur.
+      </p>
+      <ul class="tech">
+        <li>Sensor fusion</li><li>Activity recognition</li><li>Multimodal learning</li>
+      </ul>
+      <ul class="proj-links">
+        <li><a href="https://doi.org/10.1109/IROS58592.2024.10802830">Paper</a></li>
+        <li class="plain">IROS 2024</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="project-media">
       <video controls muted playsinline preload="none"
              poster="assets/world-models/tetris-poster.jpg"
              aria-label="Video of an agent playing Tetris with a Dreamer world model">
