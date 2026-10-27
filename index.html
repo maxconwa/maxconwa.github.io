@@ -103,11 +103,16 @@
     gap: clamp(1.75rem, 4vw, 3.25rem); align-items:center;
   }
   .project + .project { margin-top: clamp(3rem, 7vw, 5rem); }
+  .subhead {
+    font-size:1.1rem; font-weight:600; letter-spacing:-.01em;
+    margin:0 0 clamp(1.75rem, 4vw, 2.5rem); padding-bottom:.6rem; border-bottom:1px solid var(--rule);
+  }
+  .project + .subhead { margin-top: clamp(3.5rem, 8vw, 5.5rem); }
   .project:nth-of-type(even) .project-media { order:2; }
 
   .project-media { min-width:0; display:grid; gap:.9rem; }
   .project-media video, .frame {
-    width:100%; border-radius:10px; border:1px solid var(--rule);
+    width:100%; height:auto; border-radius:10px; border:1px solid var(--rule);
     background:var(--card); box-shadow:var(--shadow);
   }
   .placeholder {
@@ -117,18 +122,13 @@
   }
 
   .project-body { min-width:0; }
-  .project-body h3 {
+  .project-body h4 {
     font-size: clamp(1.5rem, 3.2vw, 1.85rem); letter-spacing:-.02em;
     margin:0 0 .2rem; line-height:1.15;
   }
   .expansion { color:var(--muted); font-size:.95rem; margin:0 0 .9rem; font-style:italic; }
   .pitch { font-size:1.08rem; margin:0 0 .8rem; }
   .detail { color:var(--muted); margin:0 0 1.1rem; }
-  .wip {
-    display:inline-block; vertical-align:middle; margin-left:.6rem;
-    font-size:.68rem; text-transform:uppercase; letter-spacing:.1em; font-weight:600;
-    color:var(--muted); background:var(--tag-bg); border-radius:999px; padding:.25rem .65rem;
-  }
   .tech { display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 1.1rem; padding:0; list-style:none; }
   .tech li {
     font-size:.8rem; color:var(--muted); background:var(--tag-bg);
@@ -150,6 +150,19 @@
   .updates .note { margin-top:.25rem; }
   @media (max-width: 620px) {
     .updates li { grid-template-columns:1fr; gap:.2rem; }
+  }
+
+  /* ---------- skills ---------- */
+  .skills { list-style:none; margin:0; padding:0; max-width:78ch; }
+  .skills > li {
+    display:grid; grid-template-columns: 11rem minmax(0,1fr); gap:.5rem 1.5rem;
+    padding:1.1rem 0; border-top:1px solid var(--rule);
+  }
+  .skills > li:first-child { border-top:0; padding-top:0; }
+  .skills .group { font-weight:600; }
+  .skills .tech { margin:.15rem 0 0; }
+  @media (max-width: 620px) {
+    .skills > li { grid-template-columns:1fr; }
   }
 
   /* ---------- publications ---------- */
@@ -268,6 +281,60 @@
 <section id="research" class="wrap">
   <h2>Research</h2>
 
+  <h3 class="subhead">Work in progress</h3>
+
+  <article class="project">
+    <div class="project-media">
+      <video controls muted playsinline preload="none"
+             poster="assets/game-theoretic/game-theoretic-poster.jpg"
+             aria-label="Simulation video of lower-body, upper-body, and whole-body humanoid control policies">
+        <source src="assets/game-theoretic/game-theoretic.mp4" type="video/mp4">
+        <p>Your browser cannot play this video.
+           <a href="assets/game-theoretic/game-theoretic.mp4">Download the policy video (MP4)</a>.</p>
+      </video>
+    </div>
+    <div class="project-body">
+      <h4>Game-Theoretic Humanoid Control</h4>
+      <p class="pitch">Hypothesis: by formulating whole-body loco-manipulation as a game between a
+        lower-body and an upper-body actor, whole-body behaviors like a squat and reach can emerge
+        while maintaining a clear division of labor between the two policies. This approach is
+        more sample efficient and interpretable than approaches that learn a single policy for
+        whole-body control.</p>
+      <p class="detail">Ongoing PhD work at CU Boulder with Dr. Zachary Sunberg and
+        Dr. Nikolaus Correll.</p>
+      <ul class="tech">
+        <li>Isaac Lab</li><li>Reinforcement learning</li><li>MAPPO</li>
+        <li>Unitree H1-2</li><li>MuJoCo</li>
+      </ul>
+      <ul class="proj-links">
+        <li><a href="assets/game-theoretic/cooperative-loco-manipulation.pdf">Workshop paper</a></li>
+        <li class="plain">Under review</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="project-media">
+      <a href="assets/world-models/options-figure.png">
+        <img class="frame" src="assets/world-models/options-figure.png" width="2166" height="1086" loading="lazy"
+             alt="From the same start, a Franka arm takes four decisions two ways. Four raw end-effector steps barely move the gripper, 4 of the 121 needed to stack three blocks; four options (pick green, place on blue, pick red, place on green) build the whole tower."></a>
+    </div>
+    <div class="project-body">
+      <h4>Planning with Learned World Models</h4>
+      <p class="pitch">Hypothesis: world models built over temporally extended options instead
+        of individual actions will suffer less from compounding error, enabling longer-horizon
+        planning.</p>
+      <p class="detail">Ongoing PhD work at CU Boulder with Dr. Zachary Sunberg and
+        Dr. Nikolaus Correll.</p>
+      <ul class="tech">
+        <li>DreamerV3</li><li>Model-based RL</li><li>JAX</li><li>MuJoCo MJX</li>
+        <li>MCTS</li><li>iCEM</li><li>SLURM</li>
+      </ul>
+    </div>
+  </article>
+
+  <h3 class="subhead">Completed</h3>
+
   <article class="project">
     <div class="project-media">
       <video controls muted playsinline preload="none"
@@ -279,7 +346,7 @@
       </video>
     </div>
     <div class="project-body">
-      <h3>GOLEM</h3>
+      <h4>GOLEM</h4>
       <p class="expansion">Generalized Open Layered Embodied Modules</p>
       <p class="pitch">A modular, open autonomy stack that gets a full-size humanoid doing
         high-precision industrial work.</p>
@@ -316,7 +383,7 @@
       </video>
     </div>
     <div class="project-body">
-      <h3>RAPID</h3>
+      <h4>RAPID</h4>
       <p class="expansion">Robotic Agentic Platform for Intelligent Electric Vehicle Disassembly</p>
       <p class="pitch">A robot that takes a plain-language instruction and takes an EV battery
         pack apart.</p>
@@ -349,7 +416,7 @@
       </video>
     </div>
     <div class="project-body">
-      <h3>Forceful Skill Acquisition</h3>
+      <h4>Forceful Skill Acquisition</h4>
       <p class="expansion">Unfettered Forceful Skill Acquisition with Physical Reasoning and
         Coordinate Frame Labeling</p>
       <p class="pitch">Ask a vision-language model for forces rather than trajectories, and it
@@ -379,7 +446,7 @@
            alt="Architecture: each sensing modality passes through video feature extraction; a dense modality selector outputs a weight vector that linearly combines the videos before a video classifier.">
     </div>
     <div class="project-body">
-      <h3>Learned Sensor Fusion</h3>
+      <h4>Learned Sensor Fusion</h4>
       <p class="expansion">Learned Sensor Fusion for Robust Human Activity Recognition in
         Challenging Environments</p>
       <p class="pitch">Activity recognition that keeps working in darkness, fog, and thermal
@@ -398,48 +465,6 @@
       <ul class="proj-links">
         <li><a href="https://doi.org/10.1109/IROS58592.2024.10802830">Paper</a></li>
         <li class="plain">IROS 2024</li>
-      </ul>
-    </div>
-  </article>
-
-  <article class="project">
-    <div class="project-media">
-      <video controls muted playsinline preload="none"
-             poster="assets/world-models/tetris-poster.jpg"
-             aria-label="Video of an agent playing Tetris with a Dreamer world model">
-        <source src="assets/world-models/tetris.mp4" type="video/mp4">
-        <p>Your browser cannot play this video.
-           <a href="assets/world-models/tetris.mp4">Download the Tetris video (MP4)</a>.</p>
-      </video>
-    </div>
-    <div class="project-body">
-      <h3>Planning with Learned World Models<span class="wip">Work in progress</span></h3>
-      <p class="pitch">Hypothesis: world models built over temporally extended options instead
-        of individual actions will suffer less from compounding error, enabling longer-horizon
-        planning.</p>
-      <p class="detail">Ongoing PhD work at CU Boulder with Dr. Zachary Sunberg and
-        Dr. Nikolaus Correll.</p>
-    </div>
-  </article>
-
-  <article class="project">
-    <div class="project-media">
-      <video controls muted playsinline preload="none"
-             poster="assets/game-theoretic/game-theoretic-poster.jpg"
-             aria-label="Simulation video of lower-body, upper-body, and whole-body humanoid control policies">
-        <source src="assets/game-theoretic/game-theoretic.mp4" type="video/mp4">
-        <p>Your browser cannot play this video.
-           <a href="assets/game-theoretic/game-theoretic.mp4">Download the policy video (MP4)</a>.</p>
-      </video>
-    </div>
-    <div class="project-body">
-      <h3>Game-Theoretic Humanoid Control<span class="wip">Work in progress</span></h3>
-      <p class="pitch">Learning upper- and lower-body policies for humanoids that collaborate
-        while having independent objectives.</p>
-      <p class="detail">Ongoing PhD work at CU Boulder. The video shows each policy in turn:
-        lower body, upper body, then whole body.</p>
-      <ul class="tech">
-        <li>Isaac Lab</li><li>Reinforcement learning</li>
       </ul>
     </div>
   </article>
@@ -487,7 +512,9 @@
     </li>
     <li>
       <div class="role">Graduate Teaching Assistant</div>
-      <div class="where">University of Colorado Boulder &middot; Fall 2024</div>
+      <div class="where">University of Colorado Boulder &middot; Occasionally</div>
+      <p class="note">Two computer science courses: Introduction to Computer Systems and Data
+        Science.</p>
     </li>
     <li>
       <div class="role">Teaching Assistant</div>
@@ -551,6 +578,47 @@
   </ul>
   <p class="pubs-more">Citations and the full list are on
     <a href="https://scholar.google.com/citations?user=c3wtBgMAAAAJ&amp;hl=en">Google Scholar</a>.</p>
+</section>
+
+<section id="skills" class="wrap">
+  <h2>Skills</h2>
+  <ul class="skills">
+    <li>
+      <div class="group">Robotics</div>
+      <ul class="tech">
+        <li>Humanoid robotics</li><li>Whole-body control</li><li>Manipulation</li>
+        <li>SLAM</li><li>ROS 2</li><li>Nav2</li>
+      </ul>
+    </li>
+    <li>
+      <div class="group">Planning &amp; control</div>
+      <ul class="tech">
+        <li>Motion planning</li><li>Inverse kinematics (IK)</li>
+        <li>Model predictive control (MPC)</li><li>Tree search (MCTS)</li>
+        <li>Cross-entropy method (CEM)</li><li>iCEM</li><li>OMPL</li>
+      </ul>
+    </li>
+    <li>
+      <div class="group">Machine learning</div>
+      <ul class="tech">
+        <li>Deep learning</li><li>Reinforcement learning</li><li>Multi-agent RL</li>
+        <li>World models</li><li>VLMs &amp; LLMs for robotics</li><li>LLM agents</li>
+      </ul>
+    </li>
+    <li>
+      <div class="group">Perception</div>
+      <ul class="tech">
+        <li>Computer vision</li><li>Sensor fusion</li><li>Visual servoing</li>
+      </ul>
+    </li>
+    <li>
+      <div class="group">Tools</div>
+      <ul class="tech">
+        <li>Python</li><li>PyTorch</li><li>JAX</li><li>MuJoCo</li><li>Isaac Lab</li>
+        <li>Docker</li><li>SLURM / HPC</li><li>Linux</li>
+      </ul>
+    </li>
+  </ul>
 </section>
 </main>
 
