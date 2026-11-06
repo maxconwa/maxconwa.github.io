@@ -178,6 +178,11 @@
   .pubs .authors { color:var(--muted); font-size:.95rem; }
   .pubs .venue { color:var(--muted); font-size:.9rem; }
   .pubs .me { color:var(--fg); font-weight:600; }
+  .pubs .tag {
+    display:inline-block; vertical-align:.1em; margin-right:.45rem;
+    font-size:.72rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--muted); background:var(--tag-bg); border-radius:5px; padding:.12rem .5rem;
+  }
   .pubs-more { margin:1.5rem 0 0; color:var(--muted); font-size:.95rem; }
   .pubs li.has-fig {
     display:grid; grid-template-columns: minmax(0,1fr) 15rem;
@@ -309,7 +314,8 @@
       <ul class="proj-links">
         <li><a href="https://github.com/maxconwa/Locomanipulation_game">Code</a></li>
         <li><a href="assets/game-theoretic/cooperative-loco-manipulation.pdf">Workshop paper</a></li>
-        <li class="plain">Under review</li>
+        <li class="plain">Accepted to the CoRL 2026 workshop on Open Problems in Contact-Rich
+          Loco-Manipulation</li>
       </ul>
     </div>
   </article>
@@ -336,6 +342,30 @@
       </ul>
     </div>
   </article>
+
+  <!-- A div, not an article, so the completed cards keep their left/right alternation. -->
+  <div class="project">
+    <div class="project-media">
+      <a href="assets/contact-anticipation/cover.png">
+        <img class="frame" src="assets/contact-anticipation/cover.png" width="1200" height="1185" loading="lazy"
+             alt="A humanoid torso with both arms raised as a red ball moves past it; dashed red lines run from the ball to the left wrist, the chest, and the right forearm."></a>
+    </div>
+    <div class="project-body">
+      <h4>Contact Anticipation can Reduce Collision Avoidance Sample-Efficiency</h4>
+      <p class="pitch">Hypothesis: a proximity world model that lets a robot anticipate when and
+        where contact will happen will improve its ability to avoid collisions with obstacles.
+        Tested by training a Unitree H1-2 humanoid to play dodgeball.</p>
+      <p class="detail">Carson Kohlbrenner, William Xie, Max Conway, Nikolaus Correll, and
+        Alessandro Roncone.</p>
+      <ul class="tech">
+        <li>Reinforcement learning</li><li>Unitree H1-2</li><li>World models</li>
+        <li>Collision avoidance</li>
+      </ul>
+      <ul class="proj-links">
+        <li class="plain">Accepted to the CoRL 2026 workshop &ldquo;Do Robots Need World Models?&rdquo;</li>
+      </ul>
+    </div>
+  </div>
 
   <h3 class="subhead">Completed</h3>
 
@@ -479,6 +509,16 @@
   <!-- Newest first. Copy an <li>, change the <time> and the text. -->
   <ul class="entries updates">
     <li>
+      <div class="when"><time datetime="2026-11-05">5 November 2026</time></div>
+      <div>
+        <div class="role">Two workshop papers accepted to CoRL 2026</div>
+        <p class="note">&ldquo;A Cooperative Approach to Humanoid Loco-Manipulation&rdquo; at the
+          workshop on Open Problems in Contact-Rich Loco-Manipulation, and &ldquo;Contact
+          anticipation can reduce collision avoidance sample-efficiency&rdquo; at Do Robots Need
+          World Models?</p>
+      </div>
+    </li>
+    <li>
       <div class="when"><time datetime="2026-08-21">21 August 2026</time></div>
       <div>
         <div class="role">GOLEM preprint posted</div>
@@ -532,6 +572,20 @@
 <section id="publications" class="wrap">
   <h2>Publications</h2>
   <ul class="pubs">
+    <li>
+      <div class="title">Contact anticipation can reduce collision avoidance sample-efficiency</div>
+      <div class="authors">Carson Kohlbrenner, William Xie, <span class="me">Max Conway</span>,
+        Nikolaus Correll, Alessandro Roncone</div>
+      <div class="venue"><span class="tag">Workshop</span>CoRL 2026 Workshop: Do Robots Need World Models?</div>
+    </li>
+    <li>
+      <div class="title"><a href="assets/game-theoretic/cooperative-loco-manipulation.pdf">A Cooperative Approach to Humanoid Loco-Manipulation</a></div>
+      <div class="authors"><span class="me">Max Conway</span>, William Xie, Nikolaus Correll,
+        Zachary Sunberg</div>
+      <div class="venue"><span class="tag">Workshop</span>CoRL 2026 Workshop: Open Problems in
+        Contact-Rich Loco-Manipulation &middot;
+        <a href="assets/game-theoretic/cooperative-loco-manipulation.pdf">PDF</a></div>
+    </li>
     <li>
       <div class="title"><a href="https://arxiv.org/abs/2608.21550">GOLEM: Modular Humanoid Autonomy Towards Electric Vehicle Battery Disassembly</a></div>
       <div class="authors"><span class="me">Max Conway</span>, William Xie, Allen Devaraj,
